@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: shwe-zhan-3d-system
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: OWNER_ADMIN_USERNAME
+        value: Thuriyakhun
+      - key: OWNER_ADMIN_PASSWORD
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: GEMINI_STT_MODEL
+        value: gemini-2.5-flash
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shwe-zhan-3d-db
+          property: connectionString
+
+databases:
+  - name: shwe-zhan-3d-db
+    plan: free
